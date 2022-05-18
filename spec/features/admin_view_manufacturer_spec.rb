@@ -17,15 +17,14 @@ feature 'Admin view manufacturers' do
   end
 
   scenario 'and view details' do
-    Manufacturer.create!(name: 'Fiat')
-    Manufacturer.create!(name: 'Volkswagen')
+    manufacturer = Manufacturer.create!(name: 'Fiat')
 
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
 
+    expect(current_path).to eq manufacturer_path(manufacturer)
     expect(page).to have_content('Fiat')
-    expect(page).to have_content('Volkswagen')
   end
 
   scenario 'and no manufacturers are created' do
