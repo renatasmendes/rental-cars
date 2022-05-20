@@ -1,11 +1,11 @@
 class ManufacturersController < ApplicationController
+  before_action :set_manufacturer, only: [:show, :edit, :update, :destroy] #esse método só vale para os métodos show, edit e update
     def index
         @manufacturers = Manufacturer.all #manufacturers (vai usar na view) é a variável que vai guardar todas os registros dessa tabela
                                           #sempre que tiver @ é pra essa variável ser usada na view
     end
 
     def show
-        @manufacturer = Manufacturer.find(params[:id])
     end
 
     def new
@@ -13,10 +13,7 @@ class ManufacturersController < ApplicationController
     end
 
     def create
-      name = params[:manufacturer][:name] # a caixinha onde será inserido o valor do campo foi chamada no código por "name". Ao inspecionar essa caixinha vemos que "Name" está assim: name="manufacturer[name]"
-                                          # sendo assim, tinha que quebrar nesse campo pra ficar certo. Ficando assim: params[:manufacturer][:name]                                          
-      @manufacturer = Manufacturer.new
-      @manufacturer.name = name
+      @manufacturer = Manufacturer.new(manufacturer_params)
 
       if @manufacturer.save
         redirect_to @manufacturer
@@ -25,6 +22,31 @@ class ManufacturersController < ApplicationController
       end
     end
 
+    def edit
+    end
+
     def update
+      if @manufacturer.update(manufacturer_params)
+        redirect_to @manufacturer
+      else
+        render 'edit'
+      end
+    end
+
+    def destroy
+      @manufacturer.delete
+      redirect_to manufacturers_path
+    end
+
+    private
+
+    def set_manufacturer
+      @manufacturer = Manufacturer.find(params[:id])
+    end 
+
+    def manufacturer_params
+      # { name: params[:manufacturer][:name] }
+      params.require(:manufacturer).permit(:name)
     end
 end
+
