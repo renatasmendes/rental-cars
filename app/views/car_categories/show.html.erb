@@ -1,0 +1,11 @@
+<h1>Categoria <%= @car_category.name %></h1> <!-- ao criar essa linha de comando, precisa trazer dados no método show da controller pois sem ele, o sistema dá erro por não encontrar os dados -->
+<dl>
+  <dt>Diária:</dt>
+  <dd><%= number_to_currency @car_category.daily_rate %></dd>
+
+  <dt>Seguro:</dt>
+  <dd><%= number_to_currency @car_category.car_insurance %></dd>  
+
+  <dt>Seguro para terceiros:</dt>
+  <dd><%= number_to_currency @car_category.third_part_insurance %></dd>
+</dl>
