@@ -1,10 +1,14 @@
 class CarCategoriesController < ApplicationController
+  def index
+    @car_categories = CarCategory.all
+  end
+
   def show
     @car_category = CarCategory.find(params[:id])
   end
   
   def new
-    @carcategory = CarCategory.new
+    @car_category = CarCategory.new
   end
 
   def create #Failure/Error: expect(page).to have_content('Categoria A') Capybara::ElementNotFound: Unable to find xpath "/html"

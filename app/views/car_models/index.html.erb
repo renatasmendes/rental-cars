@@ -1,0 +1,22 @@
+<h1>Modelos de Carros</h1>
+
+<table>
+  <thead> <!-- cabeçalho -->
+    <tr> <!-- row -- a tabela tem multiplas linhas -->
+      <th>Fabricante</th> <!-- o h de th é do head -->
+      <th>Nome</th>
+      <th>Categoria</th>
+    </tr>
+  </thead>
+  <tbody> <!-- corpo -->
+  <% @car_models.each do |car_model| %>
+    <tr> 
+      <td><%= car_model.manufacturer.name %></td> <!-- No body é td -->
+      <td><%= car_model.name %></td>
+      <td><%= car_model.car_category.name%></td> <!-- como precisa trazer o nome da categoria, precisa acessar essa "tabela" pra acessar o nome -->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Cadastrar novo modelo de carro', new_car_model_path %>
