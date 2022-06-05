@@ -1,0 +1,20 @@
+<h1>Locações</h1>
+
+<% @rentals.each do |rental| %>
+  <div>
+    <p>
+      <strong>Data inicial: </strong><%= l rental.start_date %>   <!-- precisa do "l" do i18n.localize por conta do formato do dado. Na view e no controller pode usar só "l", no model tem q colocar i18n.l -->
+    </p>
+    <p>
+      <strong>Data final: </strong><%= l rental.end_date %>   <!-- precisa do "l" do i18n por conta do formato do dado-->
+    </p>
+    <p>
+      <strong>Client: </strong><%= rental.client.identification %>
+    </p>
+    <p>
+      <strong>Categoria: </strong><%= rental.car_category.name %>  
+    </p>
+  </div>
+<% end %>
+
+<%= link_to 'Registrar locação', new_rental_path %>
