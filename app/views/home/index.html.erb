@@ -1,13 +1,11 @@
+<%= flash[:notice] %> <!-- mensagem interna - nesse caso foi de sucesso ao logar sistema -->
+
 <h1>Rental Cars</h1>
 
 <h2>Bem vindo ao sistema de gestão de locação</h2>
 
-<h3><%= t('hello') %></h3>
-<p><%= l Date.today %></p> <!-- o método l Date.today traz a data corrente no formato brasileiro -->
-<p><%= number_to_currency 100 %></p> <!-- o método number_to_currency faz transformar o 100 em R$ 100,00 por causa do tradutor -->
 
-
-
+<%= link_to 'Entrar', new_user_session_path %>
 <%= link_to 'Fabricantes', manufacturers_path %> <!--tag usada para ruby com html. A palavra Fabricantes é o que vai aparecer na página. O manufactures_path é o link da rota -->
 <%= link_to 'Categorias de Carros', car_categories_path %>
 <%= link_to 'Modelos de Carros', car_models_path %>
